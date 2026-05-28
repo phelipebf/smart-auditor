@@ -1,0 +1,10 @@
+{
+  "name": "precision-loss",
+  "description": "Division-before-multiplication in a fee calculation — fee rounds to zero on small withdrawals",
+  "stack": "evm-solidity",
+  "budgetUsd": 5,
+  "acceptance": {
+    "minCriticalHighCoverage": 1.0,
+    "maxSpuriousCriticalHigh": 2
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "reentrancy-basic",
+  "description": "Classic reentrancy in a simple ETH vault",
+  "stack": "evm-solidity",
+  "budgetUsd": 5,
+  "acceptance": {
+    "minCriticalHighCoverage": 1.0,
+    "maxSpuriousCriticalHigh": 2
+  }
+}

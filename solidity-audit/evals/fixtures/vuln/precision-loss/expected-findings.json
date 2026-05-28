@@ -1,0 +1,24 @@
+[
+  {
+    "id": "F-001",
+    "title": "Fee calculation divides before multiplying, zeroing the fee on small withdrawals",
+    "severity": "High",
+    "category": "arithmetic",
+    "contracts": ["PrecisionFee"],
+    "locations": [
+      {
+        "file": "PrecisionFee.sol",
+        "startLine": 30,
+        "endLine": 30
+      }
+    ],
+    "description": "`withdraw()` computes `fee = amount / 10_000 * feeBps`. For any `amount` less than `10_000 / feeBps` (~333 wei at the default 30 bps), the first division rounds to zero and the subsequent multiplication leaves the fee at zero. A griefer can withdraw in a loop of dust-sized amounts and avoid paying any protocol fee.",
+    "impact": "Protocol loses fee revenue on small withdrawals. Scaled up with many transactions or used intentionally, this results in the fee being routinely bypassed and the `feeSink` receiving nothing.",
+    "recommendation": "Reorder operations so multiplication happens before division: `uint256 fee = (amount * feeBps) / 10_000;`. Since Solidity 0.8 is overflow-checked, the intermediate product is safe for any `amount <= type(uint256).max / feeBps`.",
+    "references": [
+      "https://swcregistry.io/docs/SWC-101",
+      "https://docs.openzeppelin.com/contracts/5.x/api/utils#Math"
+    ],
+    "source": "both"
+  }
+]

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "F-001",
+    "title": "Implementation constructor does not disable initializers",
+    "severity": "High",
+    "category": "access-control",
+    "contracts": ["Market"],
+    "locations": [
+      {
+        "file": "Market.sol",
+        "startLine": 12,
+        "endLine": 28
+      }
+    ],
+    "description": "The UUPS implementation `Market` does not call `_disableInitializers()` in its constructor. This lets anyone call `initialize(address)` directly against the implementation address and become the `owner`.",
+    "impact": "An attacker takes ownership of the implementation contract. Combined with the unprotected `_authorizeUpgrade`, they can upgrade the proxy to arbitrary code and drain any funds routed through it.",
+    "recommendation": "Add a constructor that calls `_disableInitializers()` on the implementation, per OpenZeppelin's upgradeable-contracts guidance.",
+    "references": [
+      "https://docs.openzeppelin.com/contracts/5.x/upgradeable"
+    ],
+    "source": "manual-review"
+  },
+  {
+    "id": "F-002",
+    "title": "_authorizeUpgrade has no access control",
+    "severity": "Critical",
+    "category": "access-control",
+    "contracts": ["Market"],
+    "locations": [
+      {
+        "file": "Market.sol",
+        "startLine": 25,
+        "endLine": 25
+      }
+    ],
+    "description": "`_authorizeUpgrade(address)` is the UUPS hook that gates upgrades. The override here has an empty body and no modifier, so any address can call `upgradeTo` / `upgradeToAndCall` on the proxy and point it at arbitrary code.",
+    "impact": "Any EOA can replace the implementation with malicious code and steal any funds or state held by the proxy.",
+    "recommendation": "Restrict `_authorizeUpgrade` with `onlyOwner` or a dedicated upgrade role, e.g. `function _authorizeUpgrade(address) internal override onlyOwner {}`.",
+    "references": [
+      "https://eips.ethereum.org/EIPS/eip-1822",
+      "https://docs.openzeppelin.com/contracts/5.x/api/proxy#UUPSUpgradeable"
+    ],
+    "source": "manual-review"
+  }
+]

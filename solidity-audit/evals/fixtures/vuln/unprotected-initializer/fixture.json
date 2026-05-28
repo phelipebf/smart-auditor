@@ -1,0 +1,10 @@
+{
+  "name": "unprotected-initializer",
+  "description": "UUPS implementation with no _disableInitializers() and no access control on _authorizeUpgrade",
+  "stack": "evm-solidity",
+  "budgetUsd": 5,
+  "acceptance": {
+    "minCriticalHighCoverage": 1.0,
+    "maxSpuriousCriticalHigh": 2
+  }
+}

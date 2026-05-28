@@ -1,0 +1,23 @@
+[
+  {
+    "id": "F-001",
+    "title": "Reentrancy in Vault.withdraw()",
+    "severity": "Critical",
+    "category": "reentrancy",
+    "contracts": ["Vault"],
+    "locations": [
+      {
+        "file": "Vault.sol",
+        "startLine": 13,
+        "endLine": 18
+      }
+    ],
+    "description": "The withdraw() function sends ETH to msg.sender via a low-level call before zeroing the caller's balance. A malicious contract can re-enter withdraw() in its receive() fallback, draining the vault.",
+    "impact": "Complete drainage of the contract's ETH balance by a single attacker.",
+    "recommendation": "Apply the Checks-Effects-Interactions pattern: set balances[msg.sender] = 0 before the external call, or use a ReentrancyGuard modifier.",
+    "references": [
+      "https://swcregistry.io/docs/SWC-107"
+    ],
+    "source": "both"
+  }
+]
