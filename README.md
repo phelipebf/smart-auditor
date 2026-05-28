@@ -10,7 +10,7 @@
 <p align="center">
   <a href="https://github.com/phelipebf/smart-auditor/issues/new/choose"><img alt="Issues" title="Issues" src="https://img.shields.io/github/issues-raw/phelipebf/smart-auditor"></a>
   <img alt="phelipebf GitHub repo size" title="phelipebf GitHub repo size" src="https://img.shields.io/github/languages/code-size/phelipebf/smart-auditor">
-  <img alt="phelipebf GitHub commit activity" title="phelipebf GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/phelipebf/smart-auditor">
+  <img alt="phelipebf GitHub commit activity" title="phelipebf GitHub commit activity" src="https://img.shields.io/github/commit-activity/t/phelipebf/smart-auditor">
   <img alt="GitHub last commit" title="GitHub last commit" src="https://img.shields.io/github/last-commit/phelipebf/smart-auditor">
   <a href="https://github.com/phelipebf/smart-auditor/actions/workflows/skill-warden.yml"><img alt="skill-warden" title="skill-warden" src="https://github.com/phelipebf/smart-auditor/actions/workflows/skill-warden.yml/badge.svg"></a>
 </p>
